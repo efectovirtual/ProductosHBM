@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <div class="row">
+        
+        <div class="col-md-12 text-center"><h1>Products</h1></div>
+
+        <div class="col-md-3 col-md-offset-9">
+        <%= link_to "<span class='glyphicon glyphicon-plus'></span><span class='hidden-xs'> Nuevo </span> Producto".html_safe, new_product_path, class: "btn btn-primary new-room" %>
+        </div>
+
+      </div>
+     
+
+      <div class="row">
+
+        <div class="col-md-2"><h4>Nombre</h4>
+        </div>
+
+        <div class="col-md-2"><h4>Precio</h4>
+        </div>
+
+        <div class="col-md-6"><h4>Categorías</h4>
+        </div>
+
+        <div class="col-md-1">Editar</div>
+
+        <div class="col-md-1">Eliminar</div>
+      
+      </div>
+
+        <% @product.each do |pro| %>
+
+            <div class="row">
+                         
+                <div class="col-md-2"><%= pro.name %>
+                </div>
+
+                <div class="col-md-2"><%= pro.price %>
+                </div>
+
+                <div class="col-md-6">
+                  <% pro.categories.each do |c| %>
+                        <%= c.name %>
+                  <% end %>
+                </div>
+
+                <div class="col-md-1"><%= link_to('Editar', edit_product_path(pro)) %></div>
+
+                <div class="col-md-1"><%= link_to 'Eliminar', product_path(pro), method: :delete %></div>
+            
+            </div>
+
+        <% end %>      
+
+    </div>
+  </div>
+</div>

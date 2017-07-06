@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+    
+      <h1 class="text-center"> <%= @product.new_record? ? "Nuevo": "Editar" %> Producto</h1>
+      
+
+      <%= form_for @product do |f| %>
+
+          <div class="form-group">
+            <%= f.text_field :name, class: 'form-control input-lg', placeholder: "Nombre" %>
+          </div>
+     
+
+          <div class="form-group">
+            <%= f.text_field :price, class: 'form-control input-lg', placeholder: "Precio" %>
+          </div>
+
+
+
+        <% @categories.each do |category| %>
+
+          <div class="form-group">
+            <%= check_box_tag "product[category_ids][]", category.id, @product.categories.include?(category) %>
+            <%= category.name %>
+          </div>
+          
+        <% end %>
+
+
+          
+
+          <div class="actions text-right">
+            <%= f.submit @product.new_record? ? "Crear Producto" : "Editar Producto", class: "btn btn-primary btn-lg btn-block" %>
+          </div>
+
+
+
+
+
+      <% end %>     
+      
+     
+
+
+    </div>
+  </div>
+</div>
